@@ -17,6 +17,8 @@
     "md5": "^2.1.0"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-lighthouselabs": "github:lighthouse-labs/eslint-config-lighthouselabs",
     "nodemon": "^1.9.2"
   }
 }
