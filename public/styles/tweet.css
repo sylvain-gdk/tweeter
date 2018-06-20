@@ -3,7 +3,6 @@ article {
   border-width: 1px;
   border-color: #eee;
   border-radius: 7px 7px 5px 5px;
-  justify-content: space-between;
 }
 article:hover {
   border-color: #B3B6B7;
@@ -12,9 +11,13 @@ article:hover {
 header {
   color: white;
   display: flex;
-  background-color: #B3B6B7;
+  background-color: #eee;
   padding: 0 10px 0 10px;
   border-radius: 5px 5px 0 0;
+}
+
+header:hover {
+  background-color: #B3B6B7;
 }
 
 img.avatar {
@@ -41,12 +44,7 @@ footer {
   border-radius: 5px;
 }
 
-p.tweet-content {
-  height: 120px;
-  border-bottom: 0;
-}
-
-hr.tweet-footer {
+hr.tweet-separator {
   margin: 0;
   border: solid;
   border-width: 0.5px;
