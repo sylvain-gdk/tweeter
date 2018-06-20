@@ -86,5 +86,46 @@ $(document).ready(function() {
     return dateReal.toString().substring(0, 21);
   }
 
-  renderTweets(tweetData);
+  function loadTweets(){
+    $.ajax({
+        url: '/tweets',
+        type: 'GET'
+    }).then(function (jsonContent) {
+        var preElement = document.createElement('pre');
+        preElement.innerHTML = JSON.stringify(jsonContent);
+        document.body.appendChild(preElement);
+    });
+  }
+
+  $('form').on('submit', (event) => {
+    event.preventDefault();
+    const tweet = [
+      {
+        user: {
+          name: 'Sylvain Goedike',
+          avatars: {
+            small: '/images/avatar.png',
+            regular: '',
+            large: ''
+          },
+          handle: '@dev'
+        },
+        content:{
+          text: $('textarea').val()
+        },
+        created_at: Date.now()
+      }
+    ];
+
+    $.ajax({
+        method: 'POST',
+        url: '/tweets',
+        data: $(event.target).serialize()
+    }).success(function () {
+        renderTweets(tweet);
+        $('textarea').val('');
+        $('.counter').text(140);
+        loadTweets();
+    });
+  });
 });

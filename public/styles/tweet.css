@@ -6,7 +6,7 @@ article {
   margin-bottom: 20px;
 }
 article:hover {
-  border-color: #00DAB8;
+  border-color: #00a087;
 }
 
 header {
@@ -18,7 +18,7 @@ header {
 }
 
 header:hover {
-  background-color: #00DAB8;
+  background-color: #00a087;
 }
 
 img.avatar {
@@ -29,7 +29,11 @@ img.avatar {
 }
 
 h2.tweet-user {
-  color: #0082C7;
+  color: #00C7A8;
+}
+
+h2.tweet-user:hover {
+  color: white;
 }
 
 h4 {
