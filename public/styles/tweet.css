@@ -1,15 +1,18 @@
 article {
   border: solid;
   border-width: 1px;
-  border-color: grey;
+  border-color: #eee;
   border-radius: 7px 7px 5px 5px;
   justify-content: space-between;
+}
+article:hover {
+  border-color: #B3B6B7;
 }
 
 header {
   color: white;
   display: flex;
-  background-color: grey;
+  background-color: #B3B6B7;
   padding: 0 10px 0 10px;
   border-radius: 5px 5px 0 0;
 }
@@ -24,7 +27,7 @@ img.avatar {
 h4 {
   font-size: 1.2em;
   font-weight: lighter;
-  color: #D5D8DC;
+  color: white;
   margin-left: auto;
 }
 
@@ -45,8 +48,7 @@ p.tweet-content {
 
 hr.tweet-footer {
   margin: 0;
+  border: solid;
+  border-width: 0.5px;
+  color: #eee;
 }
-
-
-
-
