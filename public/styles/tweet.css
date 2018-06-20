@@ -1,4 +1,4 @@
-article {
+article  {
   border: solid;
   border-width: 1px;
   border-color: #CACFD2;
@@ -17,7 +17,7 @@ header {
   border-radius: 5px 5px 0 0;
 }
 
-header:hover {
+article:hover header {
   background-color: #00a087;
 }
 
@@ -32,7 +32,7 @@ h2.tweet-user {
   color: #00C7A8;
 }
 
-h2.tweet-user:hover {
+article:hover h2.tweet-user {
   color: white;
 }
 

@@ -27,10 +27,9 @@ $(document).ready(function() {
     return $article;
   }
 
-  function renderTweets(tweet){
-    for(let article of tweet){
-      var $tweet = createTweetElement(article);
-      $('#tweets-container').append($tweet);
+  function renderTweets(tweetsArr){
+    for(let article of tweetsArr){
+      $('#tweets-container').prepend(createTweetElement(article));
     }
   }
 
@@ -51,23 +50,23 @@ $(document).ready(function() {
 
   $('form').on('submit', (event) => {
     event.preventDefault();
-    const me = [
-      {
-        user: {
-          name: 'Me',
-          avatars: {
-            small: '/images/avatar.png',
-            regular: '',
-            large: ''
-          },
-          handle: '@dev'
-        },
-        content:{
-          text: $('textarea').val()
-        },
-        created_at: Date.now()
-      }
-    ];
+    // const me = [
+    //   {
+    //     user: {
+    //       name: 'Me',
+    //       avatars: {
+    //         small: '/images/avatar.png',
+    //         regular: '',
+    //         large: ''
+    //       },
+    //       handle: '@dev'
+    //     },
+    //     content:{
+    //       text: $('textarea').val()
+    //     },
+    //     created_at: Date.now()
+    //   }
+    // ];
     if($('textarea').val() === ''){
       alert('Your tweet is empty!');
     }else{
@@ -75,9 +74,10 @@ $(document).ready(function() {
           method: 'POST',
           url: '/tweets',
           data: $(event.target).serialize()
-      }).success(function () {
-          renderTweets(me);
-          $('textarea').val('');
+      }).success(function (data) {
+        console.log(JSON.stringify(data));
+      $('#tweets-container').prepend(createTweetElement(data));
+      $('textarea').val('');
           $('.counter').text(140);
           $('.new-tweet').slideUp();
       });
