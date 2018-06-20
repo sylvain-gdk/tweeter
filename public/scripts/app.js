@@ -4,7 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Test / driver code (temporary). Eventually will get this from the server.
 const tweetData = [
   {
     "user": {
@@ -52,7 +51,6 @@ const tweetData = [
   }
 ];
 
-
 $(document).ready(function() {
   function createTweetElement(tweet) {
     let $article = $('<article>');
@@ -63,7 +61,7 @@ $(document).ready(function() {
     let $handle = $('<h4>').text(tweet.user.handle).appendTo($header);
     let $content = $('<p>').addClass('tweet-content').text(tweet.content.text);
     let $separator = $('<hr>').addClass('tweet-separator');
-    let $date = $('<p>').text(tweet.created_at);
+    let $date = $('<p>').text(convertDate(tweet.created_at));
     $avatar.appendTo($header);
     $user.appendTo($header);
     $handle.appendTo($header);
@@ -81,6 +79,11 @@ $(document).ready(function() {
       var $tweet = createTweetElement(article);
       $('#tweets-container').append($tweet);
     }
+  }
+
+  function convertDate(date){
+    const dateReal = new Date(date);
+    return dateReal.toString().substring(0, 21);
   }
 
   renderTweets(tweetData);
