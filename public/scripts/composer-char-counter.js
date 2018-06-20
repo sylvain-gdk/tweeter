@@ -1,3 +1,5 @@
+let count = 140;
+
 $(document).ready(function() {
   $('textarea').on('keydown', (event) => {
     if(event.key.charCodeAt(0) > 31 &&
@@ -20,8 +22,5 @@ $(document).ready(function() {
     }else {
       $('.counter').text(count);
     }
-    console.log(count)
   });
 });
-
-let count = 140;

@@ -1,0 +1,52 @@
+article {
+  border: solid;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 7px 7px 5px 5px;
+  justify-content: space-between;
+}
+
+header {
+  color: white;
+  display: flex;
+  background-color: grey;
+  padding: 0 10px 0 10px;
+  border-radius: 5px 5px 0 0;
+}
+
+img.avatar {
+  width:  70px;
+  height: 70px;
+  border-radius: 5px;
+  margin: 10px 10px 10px 0;
+}
+
+h4 {
+  font-size: 1.2em;
+  font-weight: lighter;
+  color: #D5D8DC;
+  margin-left: auto;
+}
+
+p {
+  padding: 10px;
+  margin: 0;
+}
+
+footer {
+  font-size: 0.8em;
+  border-radius: 5px;
+}
+
+p.tweet-content {
+  height: 120px;
+  border-bottom: 0;
+}
+
+hr.tweet-footer {
+  margin: 0;
+}
+
+
+
+

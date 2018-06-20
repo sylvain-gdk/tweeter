@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/styles/new-tweet.css">
+    <link rel="stylesheet" type="text/css" href="/styles/tweet.css">
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
@@ -34,16 +35,27 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
+        <h2 class="tweet-compose">Compose Tweet</h2>
         <hr>
         <form method="POST" action="/tweets/">
           <textarea name="text" placeholder="What are you humming about?"></textarea>
-          <DIV>
+          <div>
             <input type="submit" value="Tweet">
             <span class="counter">140</span>
-          </DIV>
-
+          </div>
         </form>
+      </section>
+      <section>
+        <article>
+          <header>
+            <img class="avatar" src="/images/avatar.png">
+            <h2>Bill Fields</h2>
+            <h4>@rob</h4>
+          </header>
+          <p class="tweet-content">Little tweet here.</p>
+          <hr class="tweet-footer">
+          <footer><p>10 days ago</p></footer>
+        </article>
       </section>
     </main>
   </body>
