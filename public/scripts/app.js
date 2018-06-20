@@ -62,14 +62,17 @@ $(document).ready(function() {
     let $user = $('<h2>').addClass('tweet-user').text(tweet.user.name);
     let $handle = $('<h4>').text(tweet.user.handle).appendTo($header);
     let $content = $('<p>').addClass('tweet-content').text(tweet.content.text);
+    let $separator = $('<hr>').addClass('tweet-separator');
     let $date = $('<p>').text(tweet.created_at);
     $avatar.appendTo($header);
     $user.appendTo($header);
     $handle.appendTo($header);
     $header.appendTo($article);
     $content.appendTo($article);
+    $separator.appendTo($article);
     $date.appendTo($footer);
     $footer.appendTo($article);
+
     return $article;
   }
 
@@ -77,7 +80,6 @@ $(document).ready(function() {
     for(let article of tweetData){
       var $tweet = createTweetElement(article);
       $('#tweets-container').append($tweet);
-      console.log($tweet);
     }
   }
 
