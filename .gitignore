@@ -3,3 +3,4 @@ node_modules/
 .DS_Store
 article_template.html
 TODO.txt
+mongo_example.js
