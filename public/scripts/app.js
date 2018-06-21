@@ -8,42 +8,99 @@ $(document).ready(function() {
 
   // Creates a DOM for the new tweet
   function createTweetElement(tweet) {
-    let $article = $('<article>');
-    let $header = $('<header>');
-    let $footer = $('<footer>');
-    let $avatar = $('<img>').addClass('avatar').attr('src', tweet.user.avatars.small);
-    let $user = $('<h2>').addClass('tweet-user').text(tweet.user.name);
-    let $handle = $('<h4>').text(tweet.user.handle).appendTo($header);
-    let $content = $('<p>').addClass('tweet-content').text(tweet.content.text);
-    let $separator = $('<hr>').addClass('tweet-separator');
-    let $date = $('<p>').text(convertDate(tweet.created_at));
-    $avatar.appendTo($header);
-    $user.appendTo($header);
-    $handle.appendTo($header);
-    $header.appendTo($article);
-    $content.appendTo($article);
-    $separator.appendTo($article);
-    $date.appendTo($footer);
-    $footer.appendTo($article);
+    let $article    = $('<article>');
+    let $header     = $('<header>');
+    let $footer     = $('<footer>');
+
+    let $avatar     = $('<img>')
+                        .addClass('avatar')
+                        .attr('src', tweet.user.avatars.small);
+    let $user       = $('<h2>')
+                        .addClass('tweet-user')
+                        .text(tweet.user.name);
+    let $handle     = $('<h4>')
+                        .text(tweet.user.handle)
+                        .appendTo($header);
+
+    let $content    = $('<p>')
+                        .addClass('tweet-content')
+                        .text(tweet.content.text);
+
+    let $separator  = $('<hr>')
+                        .addClass('tweet-separator');
+
+    let $date       = $('<p>')
+                        .text(convertDate(tweet.created_at));
+
+    $header.append($avatar)
+            .append($user)
+            .append($handle);
+
+    $footer.append($date);
+
+    $article.append($header)
+            .append($content)
+            .append($separator)
+            .append($footer);
 
     return $article;
   }
 
-  // Renders tweets into html page
-  function renderTweets(tweetsArr){
+  // Renders tweets into index.html
+  const renderTweets = (tweetsArr) => {
     for(let article of tweetsArr){
-      $('#tweets-container').prepend(createTweetElement(article));
+      $('#tweets-container')
+        .prepend(createTweetElement(article));
     }
   }
 
+  // Handles errors gracefully
+  const errorValidation = (error) => {
+    $('.error').text('');
+    switch(error){
+      case 'empty':
+        $('.error')
+            .text('Your tweet is empty!');
+        $('textarea').on('focus', () => {
+          $('.error').text('');
+        });
+        break;
+      case 'too-many':
+        $('.error')
+            .text('You have too many characters!');
+        break;
+    }
+  }
+
+  // Resets the new tweet box
+  const reset = () => {
+    $('textarea').val('');
+    $('.counter').text(140);
+    $('.new-tweet').slideUp();
+  }
+
   // Converts date into readable string
-  function convertDate(date){
+  const convertDate = (date) => {
     const dateReal = new Date(date);
     return dateReal.toString().substring(0, 21);
   }
 
-  // Loads/renders tweets from database
-  function loadTweets(){
+  // Keeps track of the word count
+  $('textarea').on('keyup', (event) => {
+    let count = 140 - Number($(event.target)
+                              .val().length);
+    $('.counter').text(count);
+    if(count < 0 && event.key.charCodeAt(0) !== 66){
+      $('.counter').addClass('zero-count');
+      errorValidation('too-many');
+    }else if(count > 0){
+      $('.counter').removeClass('zero-count');
+      $('.error').text('');
+    }
+  });
+
+  // Refreshes tweets from url
+  const loadTweets = () => {
     $('.new-tweet').hide();
     $.ajax({
       url: '/tweets',
@@ -53,34 +110,42 @@ $(document).ready(function() {
     });
   }
 
-  // Submits new tweet on click
+  // Creates a new tweet and resets on success
+  const postTweet = (event) => {
+    $.ajax({
+      method: 'POST',
+      url: '/tweets',
+      data: $(event.target).serialize()
+    }).success(function (data) {
+      $('#tweets-container')
+          .prepend(createTweetElement(data));
+      reset();
+    });
+  }
+
+  // Submits new tweet
   $('form').on('submit', (event) => {
     event.preventDefault();
     if($('textarea').val() === ''){
-      alert('Your tweet is empty!');
-      $('textarea').focus();
+      errorValidation('empty');
    }else if($('textarea').val().length > 140){
-      alert('You have too many characters!')
-      $('textarea').focus();
+      errorValidation('too-many');
     }else{
-      $.ajax({
-        method: 'POST',
-        url: '/tweets',
-        data: $(event.target).serialize()
-      }).success(function (data) {
-        $('#tweets-container').prepend(createTweetElement(data));
-        $('textarea').val('');
-        $('.counter').text(140);
-        $('.new-tweet').slideUp();
-      });
+      postTweet(event);
     }
-  });
+  })
 
   // Toggles the new tweet window
   $('button').on('click', (event) => {
-    $('.new-tweet').slideDown();
-    $('textarea').focus();
-  });
+    if($('section').hasClass('hidden')){
+      $('.new-tweet').slideDown();
+      $('textarea').focus();
+      $('section').removeClass('hidden')
+    }else{
+      $('.new-tweet').slideUp();
+      $('section').addClass('hidden')
+    }
+  })
 
   loadTweets();
 });

@@ -19,7 +19,14 @@ textarea {
   padding: 5px;
 }
 
-div {
+div.error {
+  font-size: 24px;
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+div.footer {
   display: flex;
   justify-content: space-between;
 }
