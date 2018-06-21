@@ -46,6 +46,7 @@ h4 {
 p {
   padding: 10px;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 footer {

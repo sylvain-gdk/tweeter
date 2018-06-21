@@ -5,6 +5,8 @@
  */
 
 $(document).ready(function() {
+
+  // Creates a DOM for the new tweet
   function createTweetElement(tweet) {
     let $article = $('<article>');
     let $header = $('<header>');
@@ -27,63 +29,54 @@ $(document).ready(function() {
     return $article;
   }
 
+  // Renders tweets into html page
   function renderTweets(tweetsArr){
     for(let article of tweetsArr){
       $('#tweets-container').prepend(createTweetElement(article));
     }
   }
 
+  // Converts date into readable string
   function convertDate(date){
     const dateReal = new Date(date);
     return dateReal.toString().substring(0, 21);
   }
 
+  // Loads/renders tweets from database
   function loadTweets(){
     $('.new-tweet').hide();
     $.ajax({
-        url: '/tweets',
-        type: 'GET'
+      url: '/tweets',
+      type: 'GET'
     }).success(function (jsonContent) {
-        renderTweets(jsonContent);
+      renderTweets(jsonContent);
     });
   }
 
+  // Submits new tweet on click
   $('form').on('submit', (event) => {
     event.preventDefault();
-    // const me = [
-    //   {
-    //     user: {
-    //       name: 'Me',
-    //       avatars: {
-    //         small: '/images/avatar.png',
-    //         regular: '',
-    //         large: ''
-    //       },
-    //       handle: '@dev'
-    //     },
-    //     content:{
-    //       text: $('textarea').val()
-    //     },
-    //     created_at: Date.now()
-    //   }
-    // ];
     if($('textarea').val() === ''){
       alert('Your tweet is empty!');
+      $('textarea').focus();
+   }else if($('textarea').val().length > 140){
+      alert('You have too many characters!')
+      $('textarea').focus();
     }else{
       $.ajax({
-          method: 'POST',
-          url: '/tweets',
-          data: $(event.target).serialize()
+        method: 'POST',
+        url: '/tweets',
+        data: $(event.target).serialize()
       }).success(function (data) {
-        console.log(JSON.stringify(data));
-      $('#tweets-container').prepend(createTweetElement(data));
-      $('textarea').val('');
-          $('.counter').text(140);
-          $('.new-tweet').slideUp();
+        $('#tweets-container').prepend(createTweetElement(data));
+        $('textarea').val('');
+        $('.counter').text(140);
+        $('.new-tweet').slideUp();
       });
     }
   });
 
+  // Toggles the new tweet window
   $('button').on('click', (event) => {
     $('.new-tweet').slideDown();
     $('textarea').focus();
