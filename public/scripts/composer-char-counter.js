@@ -1,26 +1,14 @@
-let count = 140;
 
 $(document).ready(function() {
-  $('textarea').on('keydown', (event) => {
-    if(event.key.charCodeAt(0) > 31 &&
-      event.key.charCodeAt(0) < 127 &&
-      event.key.charCodeAt(0) !== 66){
-      if(count > 0){
-        count = count - 1;
-      }if(count === 0){
-        $('.counter').addClass('zero-count');
-      }
-    }else if(event.key.charCodeAt(0) === 66){
-      if(count < 140){
-        count = count + 1
-      }if(count > 0){
-        $('.counter').removeClass('zero-count');
-      }
-    }
-    if(($(event.target).val().length < 0 || $(event.target).val().length > 140) && event.key.charCodeAt(0) !== 66){
+  $('textarea').on('keyup', (event) => {
+    let count = 140 - Number($(event.target).val().length);
+    $('.counter').text(count);
+    if(count < 0 && event.key.charCodeAt(0) !== 66){
+      $('.counter').addClass('zero-count');
+      alert('You have too many characters!')
       event.preventDefault();
-    }else {
-      $('.counter').text(count);
+    }else if(count > 0){
+      $('.counter').removeClass('zero-count');
     }
   });
 });
