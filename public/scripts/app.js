@@ -59,7 +59,7 @@ $(document).ready(function() {
             .append($footer);
 
     return $article;
-  }
+  };
 
   // Renders tweets into index.html
   const renderTweets = (tweetsArr) => {
@@ -67,7 +67,7 @@ $(document).ready(function() {
       $('.tweets-container')
         .prepend(createTweetElement(article));
     }
-  }
+  };
 
   // Handles errors gracefully
   const errorValidation = (error) => {
@@ -85,20 +85,20 @@ $(document).ready(function() {
             .text('You have too many characters!');
         break;
     }
-  }
+  };
 
   // Resets the new tweet box
   const reset = () => {
     $('textarea').val('');
     $('.counter').text(140);
     $('.new-tweet').slideUp();
-  }
+  };
 
   // Converts date into readable string
   const convertDate = (date) => {
     const dateReal = new Date(date);
     return dateReal.toString().substring(0, 21);
-  }
+  };
 
   // Keeps track of the word count
   $('textarea').on('keyup', (event) => {
@@ -123,7 +123,7 @@ $(document).ready(function() {
     }).success(function (jsonContent) {
       renderTweets(jsonContent);
     });
-  }
+  };
 
   // Creates a new tweet and resets on success
   const postTweet = (event) => {
@@ -136,7 +136,7 @@ $(document).ready(function() {
           .prepend(createTweetElement(data));
       reset();
     });
-  }
+  };
 
   // Submits new tweet
   $('form').on('submit', (event) => {
@@ -148,7 +148,7 @@ $(document).ready(function() {
     }else{
       postTweet(event);
     }
-  })
+  });
 
   // Toggles the new tweet window
   $('button').on('click', (event) => {
@@ -160,7 +160,7 @@ $(document).ready(function() {
       $('.new-tweet').slideUp();
       $('section').addClass('hidden')
     }
-  })
+  });
 
   loadTweets();
 });
