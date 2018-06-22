@@ -29,14 +29,29 @@ $(document).ready(function() {
     let $separator  = $('<hr>')
                         .addClass('tweet-separator');
 
-    let $date       = $('<p>')
+    let $date       = $('<span>')
                         .text(convertDate(tweet.created_at));
+
+    let $flag       = $('<span>')
+                        .addClass('fas')
+                        .addClass('fa-flag');
+
+    let $retweet    = $('<span>')
+                        .addClass('fas')
+                        .addClass('fa-retweet');
+
+    let $like       = $('<span>')
+                        .addClass('fas')
+                        .addClass('fa-heart');
 
     $header.append($avatar)
             .append($user)
             .append($handle);
 
-    $footer.append($date);
+    $footer.append($date)
+            .append($flag)
+            .append($retweet)
+            .append($like);
 
     $article.append($header)
             .append($content)
@@ -146,6 +161,10 @@ $(document).ready(function() {
       $('section').addClass('hidden')
     }
   })
+
+  // $('article').on('hover', (event) => {
+
+  // })
 
   loadTweets();
 });
