@@ -8,9 +8,8 @@ The client-side app communicates with a server via AJAX and tweets are persisted
 
 ## Final Product
 
-!["Composing a new tweet"](https://github.com/sylvain-gdk/tweeter/blob/master/docs/compose.png)
-!["Hovering on a tweet"](https://github.com/sylvain-gdk/tweeter/blob/master/docs/hover.png)
-!["Exceding 140 characters"](https://github.com/sylvain-gdk/tweeter/blob/master/docs/edit.png)
+!["Composing a new tweet"](https://github.com/sylvain-gdk/tweeter/blob/master/public/images/compose.png)
+!["Hovering on a tweet"](https://github.com/sylvain-gdk/tweeter/blob/master/public/images/hover.png)
 
 ## Dependencies
 
