@@ -162,9 +162,5 @@ $(document).ready(function() {
     }
   })
 
-  // $('article').on('hover', (event) => {
-
-  // })
-
   loadTweets();
 });

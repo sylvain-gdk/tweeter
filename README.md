@@ -1,17 +1,28 @@
 # Tweeter Project
 
-Tweeter is a simple, single-page Twitter clone.
+Tweeter is a full stack web application that simulates another well known application (which I won't name).
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+It is primarily a client-side Single Page App (SPA).
 
-## Getting Started
+The client-side app communicates with a server via AJAX and tweets are persisted to a MongoDB which allows to survive a server restart or shutdown.
 
-1. Fork this repository, then clone your fork of this repository.
-2. Install dependencies using the `npm install` command.
-3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
-4. Go to <http://localhost:8080/> in your browser.
+## Final Product
+
+!["Registration Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/register.png)
+!["Index Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/index.png)
+!["Edit Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/edit.png)
+!["New Url Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/add.png)
 
 ## Dependencies
 
-- Express
-- Node 5.10.x or above
+- node.js
+- express
+- body-parser
+- chance
+- md5
+- mongodb
+
+## Getting Started
+
+- Install all dependencies (using `npm install` command).
+- Run the development web server (using `npm run local` command).
