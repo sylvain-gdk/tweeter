@@ -8,10 +8,9 @@ The client-side app communicates with a server via AJAX and tweets are persisted
 
 ## Final Product
 
-!["Registration Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/register.png)
-!["Index Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/index.png)
-!["Edit Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/edit.png)
-!["New Url Page"](https://github.com/sylvain-gdk/express-server/blob/master/docs/add.png)
+!["Composing a new tweet"](https://github.com/sylvain-gdk/tweeter/blob/master/docs/compose.png)
+!["Hovering on a tweet"](https://github.com/sylvain-gdk/tweeter/blob/master/docs/hover.png)
+!["Exceding 140 characters"](https://github.com/sylvain-gdk/tweeter/blob/master/docs/edit.png)
 
 ## Dependencies
 

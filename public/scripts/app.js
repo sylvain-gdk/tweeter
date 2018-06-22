@@ -64,7 +64,7 @@ $(document).ready(function() {
   // Renders tweets into index.html
   const renderTweets = (tweetsArr) => {
     for(let article of tweetsArr){
-      $('#tweets-container')
+      $('.tweets-container')
         .prepend(createTweetElement(article));
     }
   }
@@ -132,7 +132,7 @@ $(document).ready(function() {
       url: '/tweets',
       data: $(event.target).serialize()
     }).success(function (data) {
-      $('#tweets-container')
+      $('.tweets-container')
           .prepend(createTweetElement(data));
       reset();
     });
